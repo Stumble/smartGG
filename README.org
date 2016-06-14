@@ -1,0 +1,3 @@
+* About
+Smart Gas Guardian is a SRTP project.
+It can detect dangerous gas and report to users.
