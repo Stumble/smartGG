@@ -1,0 +1,1 @@
+Ait status is : <?php echo $status ?>
