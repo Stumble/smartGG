@@ -15,9 +15,16 @@ GPIO.setwarnings(False)
 
 GPIO.setup(pinNo, GPIO.IN)
 
-while True:
+def isDangerous():
     if GPIO.input(pinNo) == False:
-        print("low")
+        return True
     else:
-        print("high")
-    time.sleep(1)
+        return False
+
+if __name__ == '__main__':
+    while True:
+        if isDangerous():
+            print("Gas!")
+        else:
+            print("Nothing serious")
+        time.sleep(1)
