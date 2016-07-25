@@ -10,14 +10,11 @@ data = []
 
 
 def init():
-    config = None
-    with open('config.json', 'r') as f:
-        config = json.load(f)
     global url
-    url = config['url']
+    url = sys.argv[1]
     # get parameters
     global data
-    data = [float(i) for i in sys.argv[1:]]
+    data = [float(i) for i in sys.argv[2:]]
 
 
 if __name__ == '__main__':
