@@ -10,6 +10,6 @@ class Sgg_model extends CI_Model {
     {
         $sql = "select * from `sgg_var` where `var_name` = 'status' limit 1";
         $status = $this->db->query($sql)->row()->var_val;
-        return $status;
+        return unserialize($status);
     }
 }

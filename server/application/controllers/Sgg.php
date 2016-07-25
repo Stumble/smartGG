@@ -21,21 +21,16 @@ class Sgg extends CI_Controller {
     {
         $status = $this->Sgg_model->status();
         echo json_encode(
-            array(
-                "status" => $status,
-            )
+            $status
         );
     }
 
-    public function update($para = NULL)
+    public function update()
     {
-        $data = $this->input->post();
-        if ($para != NULL) {
-            $data['status'] = $para;
-        }
+        $postData = $this->input->post();
+        $data = serialize($postData);
         $this->db->where('var_name', 'status');
-        $this->db->update('sgg_var', array('var_val' => $data['status']));
-        /* todo: signature check */
+        $this->db->update('sgg_var', array('var_val' => $data));
     }
 }
 
