@@ -58,11 +58,16 @@
         <div class="container">
             <div class="mid-content">
                 <div class="login-form">
-                    <form method="post" action="../login/process_login">
+                    <form method="post" action="#">
                         <div class="headimg">
                             <h4>气体小卫士</h4>
                         </div>
                         <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">家庭综合状态</span>
+                                <input type="text" class="form-control" id="status" value="安全"/>
+                            </div>
+                            <p></p>
                             <?php
                             $namings = array('MQ2', 'MQ7', 'MQ4', 'MQ135', 'TEMPERATURE', 'MOISTURE');
 
@@ -79,17 +84,14 @@
                             </div>
                             <p></p>
                             <?php } ?>
-
                         </div>
-                        <button class="btn btn-large btn-block btn-primary">
+                        <button class="btn btn-large btn-block btn-primary" id="open-moi">
                                     开启加湿器
                         </button>
-                        <button class="btn btn-large btn-block btn-primary">
+                        <button class="btn btn-large btn-block btn-danger" id="clost-moi">
                                     关闭加湿器
                         </button>
-
                     </form>
-
                 </div>
             </div>
         </div>
@@ -107,7 +109,7 @@
         <script src="http://perkfile.b0.upaiyun.com/flip/files/js/jquery.tagsinput.js"></script>
         <script src="http://perkfile.b0.upaiyun.com/flip/files/js/jquery.placeholder.js"></script>
         <script>
-         var int = self.setInterval("clock()",500)
+         var interval = self.setInterval("clock()",500)
          function setInputVal(id, val) {
              $('#' + id).val(val);
          }
@@ -116,13 +118,6 @@
                  for( key in rst ) {
                      setInputVal(key, rst[key]);
                  }
-
-                 /* if (rst.status == 1) {
-                  *     $('body').css("background-color","red");
-                  * } else {
-                  *     $('body').css("background-color","green");
-                  * }*/
-                 /*                  setInputVal('MQ2A', rst.MQ2A);*/
              });
          }
         </script>
