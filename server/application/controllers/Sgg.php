@@ -32,5 +32,13 @@ class Sgg extends CI_Controller {
         $this->db->where('var_name', 'status');
         $this->db->update('sgg_var', array('var_val' => $data));
     }
+
+    public function moisture()
+    {
+        $moi = $this->Sgg_model->moisture();
+         echo json_encode(
+            array('status' => $moi)
+        );
+    }
 }
 
