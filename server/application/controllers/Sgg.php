@@ -40,5 +40,12 @@ class Sgg extends CI_Controller {
             array('status' => $moi)
         );
     }
+
+    public function setmoisture()
+    {
+        $postData = $this->input->post();
+        $this->db->where('var_name', 'moisture');
+        $this->db->update('sgg_var', array('var_val' => $postData['moisture']));
+    }
 }
 

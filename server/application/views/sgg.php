@@ -58,7 +58,7 @@
         <div class="container">
             <div class="mid-content">
                 <div class="login-form">
-                    <form method="post" action="#">
+                    <div>
                         <div class="headimg">
                             <h4>气体小卫士</h4>
                         </div>
@@ -85,13 +85,13 @@
                             <p></p>
                             <?php } ?>
                         </div>
-                        <button class="btn btn-large btn-block btn-primary" id="open-moi">
+                        <button onclick="setMoisture(1)" class="btn btn-large btn-block btn-primary" id="open-moi">
                                     开启加湿器
                         </button>
-                        <button class="btn btn-large btn-block btn-danger" id="clost-moi">
+                        <button onclick="setMoisture(0)" class="btn btn-large btn-block btn-danger" id="close-moi">
                                     关闭加湿器
                         </button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,12 +113,19 @@
          function setInputVal(id, val) {
              $('#' + id).val(val);
          }
+
          function clock() {
              $.getJSON("status",function(rst) {
                  for( key in rst ) {
                      setInputVal(key, rst[key]);
                  }
              });
+         }
+
+         function setMoisture(moiStatus) {
+             $.post("setmoisture",{'moisture' : moiStatus},function(json){
+                 alert("已操作");
+             },"json");
          }
         </script>
     </body>
