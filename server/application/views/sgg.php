@@ -110,14 +110,45 @@
         <script src="http://perkfile.b0.upaiyun.com/flip/files/js/jquery.placeholder.js"></script>
         <script>
          var interval = self.setInterval("clock()",500)
+         var alarm_interval;
          function setInputVal(id, val) {
              $('#' + id).val(val);
          }
 
+         $('<audio id="alarmAudio"><source src="../../files/notify.ogg" type="audio/ogg"></audio>').appendTo('body');//载入声音文件
+
+         function playAlarm() {
+             $('#alarmAudio')[0].play(); //播放声音
+         }
+
+         function startAlarm() {
+             alarm_interval = self.setInterval("playAlarm()", 1000);
+             setInputVal("status", "检测到可疑气体！");
+         }
+
+         function stopAlarm() {
+             window.clearInterval(alarm_interval);
+             setInputVal("status", "安全");
+         }
+
          function clock() {
              $.getJSON("status",function(rst) {
+                 isSafe = true;
                  for( key in rst ) {
-                     setInputVal(key, rst[key]);
+                     if (key.substr(-1) == "D") {
+                         if (rst[key] != 0) {
+                             isSafe = false;
+                         }
+                     } else {
+                         setInputVal(key, rst[key]);
+                     }
+                 }
+                 if (isSafe) {
+                     stopAlarm();
+                     /* close alarm */
+                 } else {
+                     startAlarm();
+                     /* open alarm */
                  }
              });
          }
