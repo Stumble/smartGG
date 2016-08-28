@@ -47,6 +47,9 @@
              margin-left:auto;
              margin-right:auto;
          }
+         .warning {
+             background-color: red;
+         }
         </style>
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
         <!--[if lt IE 9]>
@@ -65,7 +68,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">家庭综合状态</span>
-                                <input type="text" class="form-control" id="status" value="安全"/>
+                                <input style="text-align:center;" type="text" class="form-control" id="status" value="安全"/>
                             </div>
                             <p></p>
                             <?php
@@ -129,6 +132,7 @@
              isWarning = true;
              alarm_interval = self.setInterval("playAlarm()", 1000);
              setInputVal("status", "检测到可疑气体！");
+             $('#status').addClass("warning");
          }
 
          function stopAlarm() {
@@ -138,6 +142,7 @@
              isWarning = false;
              window.clearInterval(alarm_interval);
              setInputVal("status", "安全");
+             $('#status').removeClass("warning");
          }
 
          function clock() {
