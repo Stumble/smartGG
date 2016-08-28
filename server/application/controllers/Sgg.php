@@ -36,9 +36,7 @@ class Sgg extends CI_Controller {
     public function moisture()
     {
         $moi = $this->Sgg_model->moisture();
-         echo json_encode(
-            array('status' => $moi)
-        );
+        echo $moi;
     }
 
     public function setmoisture()
